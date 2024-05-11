@@ -1,0 +1,95 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "clean",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "build"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "cmake",
+            "command": "cmake",
+            "args": [
+                "-Bbuild-clang",
+                "-DCMAKE_C_COMPILER=clang",
+                "-DCMAKE_CXX_COMPILER=clang++",
+                "-DCMAKE_C_FLAGS=-g",
+                "-DCMAKE_CXX_FLAGS=-g",
+                "${workspaceFolder}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": [
+                "clean"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "build-clang",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build-clang"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": [
+                "cmake"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "cmake-gcc",
+            "command": "cmake",
+            "args": [
+                "-Bbuild-gcc",
+                "-DCMAKE_C_COMPILER=gcc",
+                "-DCMAKE_CXX_COMPILER=g++",
+                "-DCMAKE_C_FLAGS=-g",
+                "-DCMAKE_CXX_FLAGS=-g",
+                "${workspaceFolder}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": [
+                "clean"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "build-gcc",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build-gcc"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": [
+                "cmake-gcc"
+            ]
+        }
+    ],
+    "version": "2.0.0"
+}

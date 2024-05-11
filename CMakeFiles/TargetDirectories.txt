@@ -1,0 +1,3 @@
+/workspaces/vscode_docker/CMakeFiles/linux_uptime.dir
+/workspaces/vscode_docker/CMakeFiles/edit_cache.dir
+/workspaces/vscode_docker/CMakeFiles/rebuild_cache.dir
